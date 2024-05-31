@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Googly Eye Button</title>
+  <style>
+    #button-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    #googly-eye {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+
+    #pupil {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="button-container">
+    <button id="myButton"></button>
+    <div id="googly-eye">
+      <div id="pupil"></div>
+    </div>
+  </div>
+
+  <script>
+    const buttonContainer = document.getElementById('button-container');
+    const pupil = document.getElementById('pupil');
+
+    window.addEventListener('deviceorientation', (event) => {
+      const x = event.beta; // Neigung von vorne nach hinten
+      const y = event.gamma; // Neigung von links nach rechts
+
+      const maxX = 15; // maximale Neigung nach vorne/hinten
+      const maxY = 15; // maximale Neigung nach links/rechts
+
+      const pupilX = (y / maxY) * 20; // Bewegung des Pupille in der X-Richtung
+      const pupilY = (x / maxX) * 20; // Bewegung des Pupille in der Y-Richtung
+
+      pupil.style.transform = `translate(${pupilX - 50}%, ${pupilY - 50}%)`;
+    });
+
+    buttonContainer.addEventListener('click', () => {
+      alert('Button wurde geklickt!');
+    });
+  </script>
+</body>
+</html>
