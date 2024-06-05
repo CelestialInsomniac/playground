@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Googly Eye Button</title>
   <style>
-    #button-container {
-      position: relative;
-      display: inline-block;
-    }
+
 
     #googly-eye {
       position: absolute;
@@ -35,14 +32,12 @@
 </head>
 <body>
   <div id="button-container">
-    <button id="myButton"></button>
     <div id="googly-eye">
       <div id="pupil"></div>
     </div>
   </div>
 
   <script>
-    const buttonContainer = document.getElementById('button-container');
     const pupil = document.getElementById('pupil');
 
     window.addEventListener('deviceorientation', (event) => {
@@ -56,10 +51,6 @@
       const pupilY = (x / maxX) * 20; // Bewegung des Pupille in der Y-Richtung
 
       pupil.style.transform = `translate(${pupilX - 50}%, ${pupilY - 50}%)`;
-    });
-
-    buttonContainer.addEventListener('click', () => {
-      alert('Button wurde geklickt!');
     });
   </script>
 </body>
